@@ -1,3 +1,6 @@
 .idea/
 pkg/
 bin/
+*.aar
+
+src/golang.org/
