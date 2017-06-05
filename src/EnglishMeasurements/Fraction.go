@@ -44,6 +44,11 @@ func (f *Fraction) simplify(num, den int) *Fraction {
 func (f *Fraction) simplifyF(frac *Fraction) *Fraction {
 	return f.simplify(frac.Numerator, frac.Denominator)
 }
+
+func (f *Fraction) GetInteger() int {
+	return f.Numerator / f.Denominator
+}
+
 func gcd(a, b int) int {
 	if(b == 0) {
 		return a
