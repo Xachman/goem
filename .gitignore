@@ -2,5 +2,5 @@
 pkg/
 bin/
 *.aar
-
+*.iml
 src/golang.org/
