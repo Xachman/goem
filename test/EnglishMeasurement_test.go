@@ -2,7 +2,7 @@ package Test
 
 import "testing"
 import (
-	. "EnglishMeasurements"
+	. "github.com/xachman/goem/engmes"
 	"fmt"
 )
 

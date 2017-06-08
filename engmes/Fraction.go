@@ -1,4 +1,4 @@
-package EnglishMeasurements
+package engmes
 
 type Fraction struct {
 	Numerator int

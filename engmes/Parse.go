@@ -1,4 +1,4 @@
-package EnglishMeasurements
+package engmes
 
 type Parse struct {
 	Input string;

@@ -3,18 +3,18 @@ package Test
 
 import "testing"
 import (
-	"EnglishMeasurements"
+	. "github.com/xachman/goem/engmes"
 	"fmt"
 )
 
 
 func TestFractionAdd(t *testing.T) {
 
-	fraction1 := EnglishMeasurements.Fraction{
+	fraction1 := Fraction{
 		Numerator: 1,
 		Denominator: 2,
 	}
-	fraction2 := EnglishMeasurements.Fraction{
+	fraction2 := Fraction{
 		Numerator: 1,
 		Denominator: 2,
 	}
@@ -32,12 +32,12 @@ func TestFractionAdd(t *testing.T) {
 
 
 func TestFractionDivide(t *testing.T) {
-	fraction1 := EnglishMeasurements.Fraction{
+	fraction1 := Fraction{
 		Numerator: 2,
 		Denominator: 3,
 	}
 
-	fraction2 :=  EnglishMeasurements.Fraction{
+	fraction2 :=  Fraction{
 		Numerator: 1,
 		Denominator: 4,
 	}
@@ -49,12 +49,12 @@ func TestFractionDivide(t *testing.T) {
 }
 
 func TestFractionMultiply(t *testing.T) {
-	fraction1 := EnglishMeasurements.Fraction{
+	fraction1 := Fraction{
 		Numerator: 2,
 		Denominator: 3,
 	}
 
-	fraction2 :=  EnglishMeasurements.Fraction{
+	fraction2 :=  Fraction{
 		Numerator: 5,
 		Denominator: 7,
 	}
@@ -66,12 +66,12 @@ func TestFractionMultiply(t *testing.T) {
 }
 
 func TestFractionSubtract(t *testing.T) {
-	fraction1 := EnglishMeasurements.Fraction{
+	fraction1 := Fraction{
 		Numerator: 3,
 		Denominator: 4,
 	}
 
-	fraction2 :=  EnglishMeasurements.Fraction{
+	fraction2 :=  Fraction{
 		Numerator: 8,
 		Denominator: 10,
 	}
@@ -82,7 +82,7 @@ func TestFractionSubtract(t *testing.T) {
 
 }
 
-func testNumDen(num, den int, f *EnglishMeasurements.Fraction, t *testing.T) {
+func testNumDen(num, den int, f *Fraction, t *testing.T) {
 
 	if den != f.Denominator {
 		t.Error(fmt.Sprintf("Expected Denominator %d but got ", den), f.Denominator);

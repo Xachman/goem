@@ -1,4 +1,4 @@
-package EnglishMeasurements
+package engmes
 
 import "fmt"
 
