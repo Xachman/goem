@@ -48,6 +48,19 @@ func TestParseError(t *testing.T)  {
 
 
 }
+func TestParseErrorFunc(t *testing.T)  {
+
+
+	teststring := "fdsafdsafdsaf 1/2"
+
+	em, err := ParseString(teststring)
+
+	if(err != nil) {
+		t.Error("error ", em)
+	}
+
+	compair(NewEnglishMeasurement(0, 0, &Fraction{1,2}), em, t)
+}
 func compair(em, testEM EnglishMeasurement, t *testing.T) {
 
 	if em.GetInch() != testEM.GetInch() {
