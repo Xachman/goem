@@ -5,6 +5,7 @@ import (
 	"strings"
 	"strconv"
 	"fmt"
+	"errors"
 )
 // Parse to parse string
 type Parse struct {
@@ -12,15 +13,18 @@ type Parse struct {
 }
 
 // FromString parse from string
-func ParseString(st string) EnglishMeasurement {
+func ParseString(st string) (EnglishMeasurement, error) {
 
-	foot := parseFoot(st)
-	inch := parseInch(st)
-	fraction := parseFraction(st);
-	return NewEnglishMeasurement(foot, inch, &fraction)
+	foot, footErr := parseFoot(st)
+	inch, inchErr := parseInch(st)
+	fraction, fracErr := parseFraction(st);
+	if(footErr != nil && inchErr != nil && fracErr != nil) {
+		return NewEnglishMeasurement(foot, inch, &fraction), errors.New("Bad Value");
+	}
+	return NewEnglishMeasurement(foot, inch, &fraction), nil
 }
 
-func parseFoot(st string) (int) {
+func parseFoot(st string) (int, error) {
 	footReg := regexp.MustCompile("[0-9]+'");
 
 	if footReg.MatchString(st) {
@@ -29,14 +33,14 @@ func parseFoot(st string) (int) {
 		if err != nil {
 			fmt.Println(err)
 		}else {
-			return i
+			return i, nil
 		}
 	}
 
-	return 0
+	return 0, errors.New("No Value")
 }
 
-func parseInch(st string) (int) {
+func parseInch(st string) (int, error) {
 	reg := regexp.MustCompile("[0-9]+\"");
 
 	if reg.MatchString(st) {
@@ -45,14 +49,14 @@ func parseInch(st string) (int) {
 		if err != nil {
 			fmt.Println(err)
 		}else {
-			return i
+			return i, nil
 		}
 	}
 
-	return 0
+	return 0, errors.New("No Value")
 }
 
-func parseFraction(st string) (Fraction) {
+func parseFraction(st string) (Fraction, error) {
 	reg := regexp.MustCompile("[0-9]+/[0-9]+");
 
 	if reg.MatchString(st) {
@@ -66,8 +70,8 @@ func parseFraction(st string) (Fraction) {
 			fmt.Println(err)
 		}
 
-		return Fraction{i,i2}
+		return Fraction{i,i2}, nil
 	}
 
-	return Fraction{0,1}
+	return Fraction{0,1}, errors.New("No Value")
 }

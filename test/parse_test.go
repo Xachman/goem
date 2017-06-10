@@ -10,9 +10,13 @@ func TestParse(t *testing.T) {
 
 	teststring := "2' 4\" 1/2"
 
-	em := ParseString(teststring)
+	em, err := ParseString(teststring)
 
-	compair(NewEnglishMeasurement(2,4,&Fraction{1,2}), em, t);
+	if(err == nil) {
+		compair(NewEnglishMeasurement(2, 4, &Fraction{1, 2}), em, t);
+	}else{
+		t.Error(err);
+	}
 
 }
 
@@ -20,9 +24,28 @@ func TestParseNoSpace(t *testing.T) {
 
 	teststring := "2'4\"1/2"
 
-	em := ParseString(teststring)
+	em, err := ParseString(teststring)
 
-	compair(NewEnglishMeasurement(2,4,&Fraction{1,2}), em, t);
+	fmt.Println(err)
+	if(err == nil) {
+		compair(NewEnglishMeasurement(2, 4, &Fraction{1, 2}), em, t);
+	}else{
+		t.Error(err);
+	}
+
+}
+
+func TestParseError(t *testing.T)  {
+
+
+	teststring := "fdsafdsafdsaf"
+
+	em, err := ParseString(teststring)
+
+	if(err == nil) {
+		t.Error("no error ", em)
+	}
+
 
 }
 func compair(em, testEM EnglishMeasurement, t *testing.T) {
