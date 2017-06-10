@@ -35,6 +35,20 @@ func TestParseNoSpace(t *testing.T) {
 
 }
 
+func TestParseNoFrac(t *testing.T) {
+
+	teststring := "2' 6\""
+
+	em, err := ParseString(teststring)
+
+	fmt.Println(err)
+	if(err == nil) {
+		compair(NewEnglishMeasurement(2, 6, &Fraction{0, 1}), em, t);
+	}else{
+		t.Error(err);
+	}
+
+}
 func TestParseError(t *testing.T)  {
 
 
