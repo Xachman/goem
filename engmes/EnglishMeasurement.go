@@ -1,6 +1,6 @@
 package engmes
 
-
+import "fmt"
 // EnglishMeasurement the struct
 type EnglishMeasurement struct {
 	fraction Fraction
@@ -80,4 +80,11 @@ func (e *EnglishMeasurement) GetFractionInch() Fraction {
 		Numerator:   e.fraction.Numerator % e.fraction.Denominator,
 		Denominator: e.fraction.Denominator,
 	}
+}
+
+func (e *EnglishMeasurement) ToString() string {
+	return fmt.Sprintf("%d' %d\" %d/%d", e.GetFoot() ,e.GetInch(), e.fraction.Numerator, e.fraction.Denominator)
+}
+func (e *EnglishMeasurement) ToStringArea() string {
+	return fmt.Sprintf("%d' %d\" %d/%d", e.GetFootArea() ,e.GetInchArea(), e.fraction.Numerator, e.fraction.Denominator)
 }
