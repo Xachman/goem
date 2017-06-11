@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"strings"
 	"strconv"
-	"fmt"
 	"errors"
+	"fmt"
 )
 // Parse to parse string
 type Parse struct {

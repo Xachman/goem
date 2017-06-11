@@ -1,6 +1,5 @@
 package engmes
 
-import "fmt"
 
 // EnglishMeasurement the struct
 type EnglishMeasurement struct {
@@ -47,10 +46,6 @@ func (e *EnglishMeasurement) Area(em EnglishMeasurement) EnglishMeasurement {
 // Divide 2 EMs
 func (e *EnglishMeasurement) Divide(em EnglishMeasurement) EnglishMeasurement {
 	newFrac := em.fraction.Divide(&e.fraction)
-
-	fmt.Println(e.fraction)
-	fmt.Println(em.fraction)
-	fmt.Println(newFrac)
 
 	return EnglishMeasurement{
 		Fraction{

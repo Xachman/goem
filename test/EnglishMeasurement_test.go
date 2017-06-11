@@ -69,7 +69,7 @@ func TestAreaInches(t *testing.T) {
 	})
 
 	em3 := em2.Area(em)
-
+	fmt.Println(em3);
 	testValues(6, 36, Fraction{0,1}, em3.GetFootArea(), em3.GetInchArea(), em3.GetFractionInch(), t)
 
 }
