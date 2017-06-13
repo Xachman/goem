@@ -69,7 +69,6 @@ func TestAreaInches(t *testing.T) {
 	})
 
 	em3 := em2.Area(em)
-	fmt.Println(em3);
 	testValues(6, 36, Fraction{0,1}, em3.GetFootArea(), em3.GetInchArea(), em3.GetFractionInch(), t)
 
 }
@@ -104,10 +103,58 @@ func TestAreaInchesFrac(t *testing.T) {
 
 	em3 := em2.Area(em)
 
+
 	testValues(6, 58, Fraction{5,8}, em3.GetFootArea(), em3.GetInchArea(), em3.GetFractionInch(), t)
 
 }
+func TestToString(t *testing.T) {
+	em := NewEnglishMeasurement(2, 6, &Fraction{
+		Numerator: 1,
+		Denominator: 2,
+	})
 
+	test := "2' 6\" 1/2"
+
+	if test != em.ToString() {
+		t.Error(fmt.Sprintf("Expected %s but got %s", test, em.ToString()))
+	}
+}
+func TestToStringNoFrac(t *testing.T) {
+	em := NewEnglishMeasurement(2, 6, &Fraction{
+		Numerator: 0,
+		Denominator: 1,
+	})
+
+	test := "2' 6\""
+
+	if test != em.ToString() {
+		t.Error(fmt.Sprintf("Expected %s but got %s", test, em.ToString()))
+	}
+}
+func TestToStringArea(t *testing.T) {
+	em := NewEnglishMeasurement(0, 0, &Fraction{
+		Numerator: 7381,
+		Denominator: 8,
+	})
+
+	test := "6' 58\" 5/8"
+
+	if test != em.ToStringArea() {
+		t.Error(fmt.Sprintf("Expected %s but got %s", test, em.ToStringArea()))
+	}
+}
+func TestToStringAreaNoFrac(t *testing.T) {
+	em := NewEnglishMeasurement(0, 0, &Fraction{
+		Numerator: 900,
+		Denominator: 1,
+	})
+
+	test := "6' 36\""
+
+	if test != em.ToStringArea() {
+		t.Error(fmt.Sprintf("Expected %s but got %s", test, em.ToStringArea()))
+	}
+}
 func testEngMes(foot, inch int, frac Fraction, em EnglishMeasurement, t *testing.T) {
 	if foot != em.GetFoot() {
 		t.Error(fmt.Sprintf("Expected Foot %d but got ", foot), em.GetFoot());

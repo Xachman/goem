@@ -83,8 +83,16 @@ func (e *EnglishMeasurement) GetFractionInch() Fraction {
 }
 
 func (e *EnglishMeasurement) ToString() string {
-	return fmt.Sprintf("%d' %d\" %d/%d", e.GetFoot() ,e.GetInch(), e.fraction.Numerator, e.fraction.Denominator)
+	if e.GetFractionInch().Numerator != 0 {
+		return fmt.Sprintf("%d' %d\" %d/%d", e.GetFoot(), e.GetInch(), e.GetFractionInch().Numerator, e.GetFractionInch().Denominator)
+	}else{
+		return fmt.Sprintf("%d' %d\"", e.GetFoot(), e.GetInch())
+	}
 }
 func (e *EnglishMeasurement) ToStringArea() string {
-	return fmt.Sprintf("%d' %d\" %d/%d", e.GetFootArea() ,e.GetInchArea(), e.fraction.Numerator, e.fraction.Denominator)
+	if e.GetFractionInch().Numerator != 0 {
+		return fmt.Sprintf("%d' %d\" %d/%d", e.GetFootArea() ,e.GetInchArea(), e.GetFractionInch().Numerator, e.GetFractionInch().Denominator)
+	}else{
+		return fmt.Sprintf("%d' %d\"", e.GetFootArea(), e.GetInchArea())
+	}
 }
